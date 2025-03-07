@@ -25,4 +25,4 @@ build-esp32-ota:
 		--partition-table=partitions.csv \
 		--target=xtensa-esp32-espidf \
 		-Zbuild-std=std,panic_abort --release \
-		target/xtensa-esp32-espidf/temp-sensor-project.bin
+		target/xtensa-esp32-espidf/temp-sensor-project-ota.bin

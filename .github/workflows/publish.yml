@@ -19,7 +19,7 @@ jobs:
     - name: Build esp32 OTA binary
       run: |
         bash -c '. /home/testbot/.bash_profile ; git config --global --add safe.directory "$ESP_ROOT"/esp-idf && make build-esp32-ota'
-        cp target/xtensa-esp32-espidf/project-ota.bin project-ota.bin
+        cp target/xtensa-esp32-espidf/temp-sensor-project-ota.bin project-ota.bin
     - name: Upload release Lib
       uses: actions/upload-artifact@v4
       with:
