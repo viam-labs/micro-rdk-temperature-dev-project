@@ -69,7 +69,7 @@ fn main() {
         if SSID.is_some() && PASS.is_some() {
             log::info!("Storing static values from build time wifi configuration to NVS");
             storage
-                .store_default_network(SSID.unwrap().to_string(), PASS.unwrap().to_string())
+                .store_default_network(SSID.unwrap(), PASS.unwrap())
                 .expect("Failed to store WiFi credentials to NVS");
         }
     }
