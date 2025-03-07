@@ -23,11 +23,7 @@ use micro_rdk::{
         certificate::GeneratedWebRtcCertificateBuilder,
         conn::{mdns::Esp32Mdns, network::Esp32WifiNetwork},
         dtls::Esp32DtlsBuilder,
-        esp_idf_svc::{
-            self,
-            log::EspLogger,
-            sys::{g_wifi_feature_caps, CONFIG_FEATURE_CACHE_TX_BUF_BIT},
-        },
+        esp_idf_svc::{self, log::EspLogger},
         nvs_storage::NVSStorage,
         tcp::Esp32H2Connector,
     },
@@ -68,15 +64,12 @@ fn main() {
     // At runtime, if the program does not detect credentials or configs in storage,
     // it will try to load statically compiled values.
 
-    if !storage.has_wifi_credentials() {
+    if !storage.has_default_network() {
         // check if any were statically compiled
         if SSID.is_some() && PASS.is_some() {
             log::info!("Storing static values from build time wifi configuration to NVS");
             storage
-                .store_wifi_credentials(&WifiCredentials::new(
-                    SSID.unwrap().to_string(),
-                    PASS.unwrap().to_string(),
-                ))
+                .store_default_network(SSID.unwrap().to_string(), PASS.unwrap().to_string())
                 .expect("Failed to store WiFi credentials to NVS");
         }
     }
