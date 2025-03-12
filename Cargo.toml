@@ -1,6 +1,6 @@
 [package]
 name = "temp-sensor-project"
-version = "0.4.0"
+version = "0.5.0"
 edition = "2021"
 authors = ["Nicolas Menard <nicolas.p.menard@gmail.com>"]
 resolver = "2"
@@ -52,5 +52,3 @@ esp_idf_tools_install_dir = "custom:target/.embuild/espressif"
 esp_idf_sdkconfig_defaults = [
   "sdkconfig.defaults",
 ]
-
-
