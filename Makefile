@@ -8,7 +8,16 @@ upload:
 
 
 build-esp32-bin:
-	cargo espflash save-image --merge --chip esp32 target/xtensa-esp32-espidf/release/temp-sensor-project.bin --partition-table partitions.csv -s 8mb  --release
+	cargo espflash save-image \
+		--skip-update-check \
+		--chip=esp32 \
+		--bin=temp-sensor-project \
+		--partition-table=partitions.csv \
+		--target=xtensa-esp32-espidf \
+		-Zbuild-std=std,panic_abort --release \
+		--merge \
+		--flash-size 8mb \
+		target/xtensa-esp32-espidf/release/temp-sensor-project.bin
 
 flash-esp32-bin:
 ifneq (,$(wildcard target/xtensa-esp32-espidf/release/temp-sensor-project))
@@ -18,11 +27,11 @@ else
 endif
 
 build-esp32-ota:
-	cargo +esp espflash save-image \
+	cargo espflash save-image \
 		--skip-update-check \
 		--chip=esp32 \
 		--bin=temp-sensor-project \
 		--partition-table=partitions.csv \
 		--target=xtensa-esp32-espidf \
 		-Zbuild-std=std,panic_abort --release \
-		target/xtensa-esp32-espidf/temp-sensor-project-ota.bin
+		target/xtensa-esp32-espidf/release/temp-sensor-project-ota.bin
