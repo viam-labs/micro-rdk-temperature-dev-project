@@ -26,6 +26,7 @@ features = [
 [dependencies.micro-rdk-modular-driver-example]
 git = "https://github.com/viamrobotics/micro-rdk.git"
 version = "0.4.1-rc10"
+rev = "v0.4.1-rc10"
 features = ["esp32"]
 
 [dependencies]

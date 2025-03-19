@@ -1732,6 +1732,7 @@ checksum = "78ca9ab1a0babb1e7d5695e3530886289c18cf2f87ec19a575a0abdce112e3a3"
 [[package]]
 name = "micro-rdk"
 version = "0.4.1-rc10"
+source = "git+https://github.com/viamrobotics/micro-rdk.git?rev=v0.4.1-rc10#030f9c117718055ddfbeba4acf9fbf5111c4d677"
 dependencies = [
  "async-channel",
  "async-executor",
@@ -1785,6 +1786,7 @@ dependencies = [
 [[package]]
 name = "micro-rdk-macros"
 version = "0.4.1-rc10"
+source = "git+https://github.com/viamrobotics/micro-rdk.git?rev=v0.4.1-rc10#030f9c117718055ddfbeba4acf9fbf5111c4d677"
 dependencies = [
  "proc-macro-crate",
  "proc-macro2",
@@ -1795,6 +1797,7 @@ dependencies = [
 [[package]]
 name = "micro-rdk-modular-driver-example"
 version = "0.4.1-rc10"
+source = "git+https://github.com/viamrobotics/micro-rdk.git?rev=v0.4.1-rc10#030f9c117718055ddfbeba4acf9fbf5111c4d677"
 dependencies = [
  "log",
  "micro-rdk",
@@ -2678,7 +2681,7 @@ dependencies = [
 [[package]]
 name = "timestamp"
 version = "0.2.0"
-source = "git+https://github.com/viam-labs/micro-rdk-timestamp-sensor.git#e93f229dc0fbebfeaae80fdd3e795b8b685d42c4"
+source = "git+https://github.com/viam-labs/micro-rdk-timestamp-sensor.git#43c44f07c5274eb2f9b5cf8ba73ca351cb15a22f"
 dependencies = [
  "base64 0.21.7",
  "log",
@@ -2699,7 +2702,7 @@ dependencies = [
 [[package]]
 name = "tmp36_sensor"
 version = "0.0.1"
-source = "git+https://github.com/stevebriskin/micrordk-tmp36.git#7d2683df5fce02580a5b72f6f07421eb99fae69e"
+source = "git+https://github.com/stevebriskin/micrordk-tmp36.git#d953bd3f01e4eafa81d4029a82b397e963e6d561"
 dependencies = [
  "micro-rdk",
 ]
@@ -3220,7 +3223,3 @@ dependencies = [
  "quote",
  "syn 2.0.100",
 ]
-
-[[patch.unused]]
-name = "micro-rdk-ffi"
-version = "0.4.1-rc10"

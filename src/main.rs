@@ -11,7 +11,7 @@ use micro_rdk::{
     common::{
         conn::{server::WebRtcConfiguration, viam::ViamServerBuilder},
         credentials_storage::{
-            RobotConfigurationStorage, RobotCredentials, WifiCredentialStorage, WifiCredentials,
+            RobotConfigurationStorage, RobotCredentials, WifiCredentialStorage,
         },
         exec::Executor,
         log::initialize_logger,
@@ -70,17 +70,14 @@ fn main() {
     // At runtime, if the program does not detect credentials or configs in storage,
     // it will try to load statically compiled values.
 
-    if !storage.has_wifi_credentials() {
+    if !storage.has_default_network() {
         log::warn!("no wifi credentials were found in storage");
 
         // check if any were statically compiled
         if SSID.is_some() && PASS.is_some() {
             log::info!("storing static values from build time wifi configuration to storage");
             storage
-                .store_wifi_credentials(&WifiCredentials::new(
-                    SSID.unwrap().to_string(),
-                    PASS.unwrap().to_string(),
-                ))
+                .store_default_network(SSID.unwrap(), PASS.unwrap())
                 .expect("failed to store WiFi credentials to storage");
         }
     }
