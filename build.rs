@@ -20,6 +20,20 @@ fn main() -> Result<(), &'static str> {
     println!("cargo:rerun-if-env-changed=MICRO_RDK_WIFI_PASSWORD");
     println!("cargo:rerun-if-changed=viam.json");
 
+    if std::env::var_os("MICRO_RDK_WIFI_PASSWORD").is_none() {
+        let pass: &'static str = "";
+        if pass.len() > 0 {
+            println!("cargo:rustc-env=MICRO_RDK_WIFI_PASSWORD={}", pass);
+        }
+    }
+
+    if std::env::var_os("MICRO_RDK_WIFI_SSID").is_none() {
+        let ssid: &'static str = "";
+        if ssid.len() > 0 {
+            println!("cargo:rustc-env=MICRO_RDK_WIFI_SSID={}", ssid);
+        }
+    }
+
     if let Ok(content) = std::fs::read_to_string("viam.json") {
         if let Ok(cfg) = serde_json::from_str::<Config>(content.as_str()) {
             println!(
@@ -28,8 +42,6 @@ fn main() -> Result<(), &'static str> {
             );
             println!("cargo:rustc-env=MICRO_RDK_ROBOT_ID={}", cfg.cloud.id);
             println!("cargo:rustc-env=MICRO_RDK_ROBOT_APP_ADDRESS={}", cfg.cloud.app_address);
-        } else {
-            return Err("`viam.json` is empty or its contents are invalid, re download it from app.viam.com");
         }
     }
 

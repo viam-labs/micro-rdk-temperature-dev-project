@@ -1,29 +1,52 @@
 .PHONY: build
 
+# Older ESP32 devices might only have 4mb of flash and slower
+FLASHSIZE:=8mb
+BAUDRATE:=460800
+
+clean:
+	cargo clean
+
 build:
 	cargo build --release
 
 upload:
-	cargo espflash flash --erase-parts nvs --monitor --partition-table partitions.csv --baud 460800 -f 80mhz --release $(ESPFLASH_FLASH_ARGS)
+	cargo espflash flash \
+		--erase-parts nvs \
+		--monitor \
+		--partition-table partitions.csv \
+		--baud ${BAUDRATE} \
+		--flash-freq 80mhz \
+		--release $(ESPFLASH_FLASH_ARGS)
+
+monitor:
+	espflash monitor --baud ${BAUDRATE}
+
+info:
+	cargo espflash board-info --baud ${BAUDRATE}
+
+erase:
+	cargo espflash erase-flash --baud ${BAUDRATE}
+
+list-partitions:
+	cargo espflash partition-table partitions.csv
 
 build-esp32-bin:
 	cargo espflash save-image \
 		--skip-update-check \
 		--chip=esp32 \
-		--bin=temp-sensor-project \
 		--partition-table=partitions.csv \
 		--target=xtensa-esp32-espidf \
 		-Zbuild-std=std,panic_abort \
 		--release \
-		--flash-size=8mb \
+		--flash-size=${FLASHSIZE} \
 		--merge \
 		target/xtensa-esp32-espidf/release/temp-sensor-project.bin
 
 build-esp32-ota:
-	cargo espflash save-image \
+	cargo +esp espflash save-image \
 		--skip-update-check \
 		--chip=esp32 \
-		--bin=temp-sensor-project \
 		--partition-table=partitions.csv \
 		--target=xtensa-esp32-espidf \
 		-Zbuild-std=std,panic_abort \
@@ -32,7 +55,12 @@ build-esp32-ota:
 
 flash-esp32-bin:
 ifneq (,$(wildcard target/xtensa-esp32-espidf/release/temp-sensor-project))
-	espflash flash --erase-parts nvs --partition-table partitions.csv  target/xtensa-esp32-espidf/release/temp-sensor-project --baud 460800 -s 8mb && sleep 2 && espflash monitor
+	espflash flash \
+		--erase-parts nvs \
+		--partition-table partitions.csv \
+		--flash-size ${FLASHSIZE} \
+		--baud ${BAUDRATE} \
+		target/xtensa-esp32-espidf/release/temp-sensor-project && sleep 2 && espflash monitor --baud ${BAUDRATE}
 else
 	$(error target/xtensa-esp32-espidf/release/temp-sensor-project not found, run build-esp32-bin first)
 endif
