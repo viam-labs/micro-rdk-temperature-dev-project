@@ -38,6 +38,7 @@ futures-lite = "2"
 log = "0.4"
 timestamp = { git = "https://github.com/viam-labs/micro-rdk-timestamp-sensor.git"}
 tmp36_sensor = { git = "https://github.com/stevebriskin/micrordk-tmp36.git"}
+bme280-module = { git = "https://github.com/viam-labs/bme280-module.git" }
 
 [build-dependencies]
 cargo_metadata = "0.19"
