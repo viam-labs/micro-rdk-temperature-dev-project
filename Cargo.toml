@@ -23,6 +23,14 @@ features = [
   "binstart",
 ]
 
+[patch.'https://github.com/viamrobotics/micro-rdk.git']
+micro-rdk = { git = "https://github.com/npmenard/micro-rdk/", branch = "fix-for-1.85"  }
+
+[patch.crates-io]
+crossbeam-utils = { git = "https://github.com/npmenard/crossbeam/"}
+async-io = { git = "https://github.com/npmenard/async-io/"}
+esp-idf-svc = { git = "https://github.com/npmenard/esp-idf-svc.git" }
+
 [dependencies.micro-rdk-modular-driver-example]
 git = "https://github.com/viamrobotics/micro-rdk.git"
 version = "0.4.1-rc10"
