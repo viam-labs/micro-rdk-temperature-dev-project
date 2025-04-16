@@ -3,4 +3,3 @@
 .vscode
 .micro-rdk-docker-caches
 *viam.json*
-components_esp32.lock
