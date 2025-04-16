@@ -10,9 +10,7 @@ use async_io::Timer;
 use micro_rdk::{
     common::{
         conn::{server::WebRtcConfiguration, viam::ViamServerBuilder},
-        credentials_storage::{
-            RobotConfigurationStorage, RobotCredentials, WifiCredentialStorage,
-        },
+        credentials_storage::{RobotConfigurationStorage, RobotCredentials, WifiCredentialStorage},
         exec::Executor,
         log::initialize_logger,
         provisioning::server::ProvisioningInfo,
@@ -23,19 +21,11 @@ use micro_rdk::{
         certificate::GeneratedWebRtcCertificateBuilder,
         conn::{mdns::Esp32Mdns, network::Esp32WifiNetwork},
         dtls::Esp32DtlsBuilder,
-        esp_idf_svc::{
-            self,
-            log::EspLogger,
-            sys::{g_wifi_feature_caps, CONFIG_FEATURE_CACHE_TX_BUF_BIT},
-        },
+        esp_idf_svc::{self, log::EspLogger},
         nvs_storage::NVSStorage,
         tcp::Esp32H2Connector,
     },
 };
-
-extern "C" {
-    pub static g_spiram_ok: bool;
-}
 
 macro_rules! generate_register_modules {
     ($($module:ident),*) => {
@@ -71,19 +61,21 @@ fn main() {
     // it will try to load statically compiled values.
 
     if !storage.has_default_network() {
-        log::warn!("no wifi credentials were found in storage");
+        log::warn!("no default network settings found in storage");
 
         // check if any were statically compiled
         if SSID.is_some() && PASS.is_some() {
-            log::info!("storing static values from build time wifi configuration to storage");
+            log::info!(
+                "storing static values from build time network settings to storage as default"
+            );
             storage
                 .store_default_network(SSID.unwrap(), PASS.unwrap())
-                .expect("failed to store WiFi credentials to storage");
+                .expect("failed to store network settings to storage");
         }
     }
 
     if !storage.has_robot_credentials() {
-        log::warn!("no machine configuration was found in storage");
+        log::warn!("no machine credentials were found in storage");
 
         // check if any were statically compiled
         // TODO(RSDK-9148): update with app address storage logic when version is incremented
@@ -94,20 +86,12 @@ fn main() {
                     &RobotCredentials::new(
                         ROBOT_ID.unwrap().to_string(),
                         ROBOT_SECRET.unwrap().to_string(),
+                        ROBOT_APP_ADDRESS.unwrap().to_string(),
                     )
+                    .expect("failed to parse app address")
                     .into(),
                 )
                 .expect("failed to store machine credentials to storage");
-            storage
-                .store_app_address(ROBOT_APP_ADDRESS.unwrap())
-                .expect("failed to store app address to storage")
-        }
-    }
-
-    unsafe {
-        if !g_spiram_ok {
-            log::info!("spiram not initialized disabling cache feature of the wifi driver");
-            g_wifi_feature_caps &= !(CONFIG_FEATURE_CACHE_TX_BUF_BIT as u64);
         }
     }
 

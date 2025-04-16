@@ -1,10 +1,10 @@
 [package]
 name = "temp-sensor-project"
-version = "0.7.0"
+version = "0.8.0"
 edition = "2021"
 authors = ["Nicolas Menard <nicolas.p.menard@gmail.com>"]
 resolver = "2"
-rust-version = "1.83"
+rust-version = "1.85"
 
 [profile.release]
 debug = true
@@ -14,43 +14,47 @@ opt-level = "z"
 debug = true
 opt-level = "z"
 
+[patch.crates-io]
+concurrent-queue = { git = "https://github.com/npmenard/concurrent-queue", rev = "a98a84c2ecb099020ac66434589af6ecfd81f6ca" }
+
 [dependencies.micro-rdk]
 git = "https://github.com/viamrobotics/micro-rdk.git"
-version = "0.4.1-rc10"
-rev = "v0.4.1-rc10"
+version = "0.5.0-rc1"
+rev = "v0.5.0-rc1"
 features = [
   "esp32",
   "binstart",
+
 ]
 
 [dependencies.micro-rdk-modular-driver-example]
 git = "https://github.com/viamrobotics/micro-rdk.git"
-version = "0.4.1-rc10"
-rev = "v0.4.1-rc10"
+version = "0.5.0-rc1"
+rev = "v0.5.0-rc1"
 features = ["esp32"]
 
 [dependencies]
 async-io = "2"
-async-channel = "2"
-embedded-hal = { version = "~0.2", features = ["unproven"]}
-embedded-svc = "0.27"
-futures-lite = "2"
 log = "0.4"
 timestamp = { git = "https://github.com/viam-labs/micro-rdk-timestamp-sensor.git"}
-tmp36_sensor = { git = "https://github.com/stevebriskin/micrordk-tmp36.git"}
-bme280-module = { git = "https://github.com/viam-labs/bme280-module.git" }
+tmp36_sensor = { git = "https://github.com/viam-modules/micrordk-tmp36.git"}
+bme280-module = { git = "https://github.com/viam-modules/micrordk-bme280.git" }
 
 [build-dependencies]
 cargo_metadata = "0.19"
-embuild = "0.32"
+embuild = "0.33"
 regex = "1.11"
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 
 [package.metadata.esp-idf-sys]
-# TODO(RSDK-8998): Upgrade ESP-IDF to latest stable
-esp_idf_version = "v4.4.8"
+esp_idf_version = "v5.4.1"
 esp_idf_tools_install_dir = "custom:target/.embuild/espressif"
 esp_idf_sdkconfig_defaults = [
   "sdkconfig.defaults",
 ]
+
+
+
+[[package.metadata.esp-idf-sys.extra_components]]
+remote_component = { name = "espressif/mdns", version = "1.8.0" }
