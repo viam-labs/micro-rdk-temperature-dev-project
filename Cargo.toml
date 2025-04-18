@@ -41,6 +41,7 @@ tmp36_sensor = { git = "https://github.com/viam-modules/micrordk-tmp36.git"}
 
 # TODO(RSDK-10500): Restore bm3280 support when the referenced ticket is resolved
 # bme280-module = { git = "https://github.com/viam-modules/micrordk-bme280.git" }
+bme280-module = { path = "../micrordk-bme280" }
 
 [build-dependencies]
 cargo_metadata = "0.19"
