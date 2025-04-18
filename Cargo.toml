@@ -38,7 +38,9 @@ async-io = "2"
 log = "0.4"
 timestamp = { git = "https://github.com/viam-labs/micro-rdk-timestamp-sensor.git"}
 tmp36_sensor = { git = "https://github.com/viam-modules/micrordk-tmp36.git"}
-bme280-module = { git = "https://github.com/viam-modules/micrordk-bme280.git" }
+
+# TODO(RSDK-10500): Restore bm3280 support when the referenced ticket is resolved
+# bme280-module = { git = "https://github.com/viam-modules/micrordk-bme280.git" }
 
 [build-dependencies]
 cargo_metadata = "0.19"
