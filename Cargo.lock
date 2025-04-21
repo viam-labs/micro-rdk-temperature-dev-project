@@ -474,7 +474,7 @@ checksum = "5b63caa9aa9397e2d9480a9b13673856c78d8ac123288526c37d7839f2a86990"
 [[package]]
 name = "concurrent-queue"
 version = "2.5.0"
-source = "git+https://github.com/npmenard/concurrent-queue?rev=a98a84c2ecb099020ac66434589af6ecfd81f6ca#a98a84c2ecb099020ac66434589af6ecfd81f6ca"
+source = "git+https://github.com/npmenard/concurrent-queue?rev=ffdd176#ffdd1766d1fa8479a57036525b247001c78a52e4"
 dependencies = [
  "crossbeam-utils",
 ]
@@ -1610,9 +1610,9 @@ checksum = "4a5f13b858c8d314ee3e8f639011f7ccefe71f97f96e50151fb991f267928e2c"
 
 [[package]]
 name = "jiff"
-version = "0.2.8"
+version = "0.2.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e5ad87c89110f55e4cd4dc2893a9790820206729eaf221555f742d540b0724a0"
+checksum = "59ec30f7142be6fe14e1b021f50b85db8df2d4324ea6e91ec3e5dcde092021d0"
 dependencies = [
  "jiff-static",
  "log",
@@ -1623,9 +1623,9 @@ dependencies = [
 
 [[package]]
 name = "jiff-static"
-version = "0.2.8"
+version = "0.2.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d076d5b64a7e2fe6f0743f02c43ca4a6725c0f904203bfe276a5b3e793103605"
+checksum = "526b834d727fd59d37b076b0c3236d9adde1b1729a4361e20b2026f738cc1dbe"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -1717,8 +1717,8 @@ checksum = "78ca9ab1a0babb1e7d5695e3530886289c18cf2f87ec19a575a0abdce112e3a3"
 
 [[package]]
 name = "micro-rdk"
-version = "0.5.0-rc1"
-source = "git+https://github.com/viamrobotics/micro-rdk.git?rev=v0.5.0-rc1#979c6fb7f35ebb025b9e3c9ccda2068f8a3d64e4"
+version = "0.5.0"
+source = "git+https://github.com/viamrobotics/micro-rdk.git?rev=v0.5.0#0cb76c5ff1f93083ffeba8675cdecbccf5992fed"
 dependencies = [
  "async-channel",
  "async-executor",
@@ -1769,8 +1769,8 @@ dependencies = [
 
 [[package]]
 name = "micro-rdk-macros"
-version = "0.5.0-rc1"
-source = "git+https://github.com/viamrobotics/micro-rdk.git?rev=v0.5.0-rc1#979c6fb7f35ebb025b9e3c9ccda2068f8a3d64e4"
+version = "0.5.0"
+source = "git+https://github.com/viamrobotics/micro-rdk.git?rev=v0.5.0#0cb76c5ff1f93083ffeba8675cdecbccf5992fed"
 dependencies = [
  "proc-macro-crate",
  "proc-macro2",
@@ -1780,8 +1780,8 @@ dependencies = [
 
 [[package]]
 name = "micro-rdk-modular-driver-example"
-version = "0.5.0-rc1"
-source = "git+https://github.com/viamrobotics/micro-rdk.git?rev=v0.5.0-rc1#979c6fb7f35ebb025b9e3c9ccda2068f8a3d64e4"
+version = "0.5.0"
+source = "git+https://github.com/viamrobotics/micro-rdk.git?rev=v0.5.0#0cb76c5ff1f93083ffeba8675cdecbccf5992fed"
 dependencies = [
  "log",
  "micro-rdk",
@@ -2614,7 +2614,7 @@ dependencies = [
 
 [[package]]
 name = "temp-sensor-project"
-version = "0.8.1"
+version = "0.9.0"
 dependencies = [
  "async-io",
  "cargo_metadata 0.19.2",
@@ -2685,7 +2685,7 @@ dependencies = [
 [[package]]
 name = "timestamp"
 version = "0.3.0"
-source = "git+https://github.com/viam-labs/micro-rdk-timestamp-sensor.git#f1fa2de7cff4cc27402272b17bece1fe74eb7cc7"
+source = "git+https://github.com/viam-labs/micro-rdk-timestamp-sensor.git#b1170446052ae36353f623645b33778dccc9b21f"
 dependencies = [
  "base64 0.21.7",
  "log",
@@ -2706,7 +2706,7 @@ dependencies = [
 [[package]]
 name = "tmp36_sensor"
 version = "0.0.2"
-source = "git+https://github.com/viam-modules/micrordk-tmp36.git#ca1929bf261884017d0cff44100b179d2e1bc89d"
+source = "git+https://github.com/viam-modules/micrordk-tmp36.git#a24e562fbf09a7a1e5834ae738bd20c0f424884b"
 dependencies = [
  "micro-rdk",
 ]
