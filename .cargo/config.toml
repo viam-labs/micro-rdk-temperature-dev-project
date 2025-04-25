@@ -30,3 +30,4 @@ build-std = ["std", "panic_abort"]
 
 [env]
 ESP_IDF_VERSION = "v5.4.1"
+BINDGEN_EXTRA_CLANG_ARGS = "-D CONFIG_I2C_BUS_BACKWARD_CONFIG"
