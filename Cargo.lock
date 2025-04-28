@@ -278,6 +278,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "bme280-module"
+version = "0.0.2"
+source = "git+https://github.com/viam-modules/micrordk-bme280.git#5480e92cda76616ad46aaf6c97ba52ccd04317e9"
+dependencies = [
+ "log",
+ "micro-rdk",
+]
+
+[[package]]
 name = "bstr"
 version = "1.12.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2617,6 +2626,7 @@ name = "temp-sensor-project"
 version = "0.9.0"
 dependencies = [
  "async-io",
+ "bme280-module",
  "cargo_metadata 0.19.2",
  "embuild 0.33.0",
  "log",
