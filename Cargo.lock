@@ -280,7 +280,7 @@ dependencies = [
 [[package]]
 name = "bme280-module"
 version = "0.0.2"
-source = "git+https://github.com/viam-modules/micrordk-bme280.git#0d1b5845b04bf99821c3eb217517e978580b256b"
+source = "git+https://github.com/viam-modules/micrordk-bme280.git#5480e92cda76616ad46aaf6c97ba52ccd04317e9"
 dependencies = [
  "log",
  "micro-rdk",
