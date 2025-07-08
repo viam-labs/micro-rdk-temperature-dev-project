@@ -160,6 +160,5 @@ fn main() {
     let mdns = Esp32Mdns::new("".to_owned()).unwrap();
 
     let mut server = { builder.build(Esp32H2Connector::default(), exec, mdns) };
-    log::info!("HELLO AFTER OTA");
-    server.run_forever();
+    server.run_until_complete();
 }
